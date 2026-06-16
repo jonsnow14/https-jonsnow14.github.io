@@ -104,31 +104,44 @@ a:hover {
 }
 
 /* Code blocks */
-pre {
-  background-color: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 6px;
-  padding: 16px;
+pre,
+.highlight,
+figure.highlight,
+div.highlight {
+  background-color: #161b22 !important;
+  border: 1px solid #30363d !important;
+  border-radius: 6px !important;
+  padding: 16px !important;
   overflow-x: auto;
+  color: #e6edf3 !important;
 }
 
-pre code {
-  background-color: transparent;
-  border: none;
-  color: #e6edf3;
+pre code,
+.highlight code,
+figure.highlight code {
+  background-color: transparent !important;
+  border: none !important;
+  color: #e6edf3 !important;
   font-size: 13px;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
 code {
-  background-color: #161b22;
-  color: #e6edf3;
-  border: 1px solid #30363d;
+  background-color: #161b22 !important;
+  color: #e6edf3 !important;
+  border: 1px solid #30363d !important;
   border-radius: 4px;
   padding: 2px 6px;
   font-size: 85%;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
+
+/* Syntax highlighter token colors */
+.highlight .c, .highlight .c1, .highlight .cm { color: #8b949e !important; }  /* comments */
+.highlight .k, .highlight .kd, .highlight .kn { color: #ff7b72 !important; }  /* keywords */
+.highlight .s, .highlight .s1, .highlight .s2 { color: #a5d6ff !important; }  /* strings */
+.highlight .nf, .highlight .nb { color: #d2a8ff !important; }                  /* functions */
+.highlight .mi, .highlight .mf { color: #79c0ff !important; }                  /* numbers */
 
 /* Tables */
 table {
