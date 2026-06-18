@@ -178,11 +178,13 @@ Self-RAG is the most sophisticated pattern. The model is trained to emit special
 | Token | Meaning |
 |---|---|
 | `[Retrieve]` | "I need to look something up before continuing" |
-| `[IsREL]` | "This retrieved chunk is relevant to my question" |
-| `[IsREL] No` | "This chunk is not relevant — discard it" |
-| `[IsSUP]` | "My generated statement is supported by the context" |
-| `[IsSUP] No` | "My statement contradicts the context — retract it" |
-| `[IsUSE]` | "My overall response is useful" |
+| `[No Retrieve]` | "I have enough context — no retrieval needed" |
+| `[Relevant]` | "This retrieved passage is relevant to my question" |
+| `[Irrelevant]` | "This passage is not relevant — discard it" |
+| `[Fully supported]` | "My generated statement is fully supported by the context" |
+| `[Partially supported]` | "My statement is only partially backed by the context" |
+| `[No support / Contradictory]` | "My statement contradicts or is absent from the context" |
+| `[Utility]:1–5` | "My overall response is useful — rated on a 1 to 5 scale" |
 
 ```
 Question: "What causes transformer attention to scale quadratically?"
@@ -194,12 +196,12 @@ Model generates: "Transformer attention scales quadratically because..."
                               │
                          [chunk returned]
                               │
-                         [IsREL] Yes  ← chunk is relevant
-                         [IsSUP] Yes  ← statement is supported
+                         [Relevant]  ← chunk is relevant
+                         [Fully supported]  ← statement is supported
                               │
         "...each token attends to every other token, resulting in
          O(n²) memory and compute with respect to sequence length."
-                         [IsUSE] Yes  ← final answer is useful
+                         [Utility]:5  ← final answer is highly useful
 ```
 
 The model actively monitors its own generation. If it produces a claim not supported by the retrieved context, it catches and corrects it mid-stream rather than returning a hallucinated answer.
